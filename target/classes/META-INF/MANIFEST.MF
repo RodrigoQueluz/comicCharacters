@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: character
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Casal
+Implementation-Vendor-Id: com.digitalpages
+Build-Jdk: 1.8.0_66
+Implementation-URL: http://projects.spring.io/spring-boot/demo/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
