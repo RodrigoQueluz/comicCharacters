@@ -10,14 +10,11 @@ import javax.persistence.Entity;
 public class ComicCharacter {
 
 	private Integer id;
-
 	private String name;
-	
 	private String description;
-	
 	private Date lastUpdate;
-	
 	private List<Comic> comics;
+	private String thumb;
 	
 	public Integer getId() {
 		return id;
@@ -62,5 +59,13 @@ public class ComicCharacter {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getThumb() {
+		return thumb;
+	}
+
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
 	}
 }

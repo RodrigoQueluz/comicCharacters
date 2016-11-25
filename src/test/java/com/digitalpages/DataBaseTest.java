@@ -54,7 +54,7 @@ public class DataBaseTest {
 	public void shouldInsertComic() throws SQLException{
 		comic = new Comic();
 		comic.setTitle("Comic Title");
-		comic.setIssue(199);
+		comic.setIssue("199");
 		
 		ComicDAOImpl impl = new ComicDAOImpl();
 		impl.save(comic);

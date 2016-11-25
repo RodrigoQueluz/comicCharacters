@@ -8,7 +8,9 @@ public class Comic {
 
 	private Integer id;
 	private String title;
-	private Integer issue;
+	private String issue;
+	private String description;
+	private String thumb;
 	
 	public Integer getId() {
 		return id;
@@ -32,12 +34,27 @@ public class Comic {
 		return "Comic [id=" + id +", title=" + title + ", issue="+issue+"]";
 	}
 
-	public Integer getIssue() {
+	public String getIssue() {
 		return issue;
 	}
 
-	public void setIssue(Integer issue) {
+	public void setIssue(String issue) {
 		this.issue = issue;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getThumb() {
+		return thumb;
+	}
+
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
+	}
 }

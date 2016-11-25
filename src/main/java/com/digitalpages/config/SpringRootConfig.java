@@ -2,7 +2,6 @@ package com.digitalpages.config;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,10 +11,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
-@ComponentScan({ "com.character" })
+@ComponentScan({ "com.digitalpages" })
 @Configuration
 public class SpringRootConfig {
 
@@ -33,16 +30,6 @@ public class SpringRootConfig {
 	}
 	
 	@Bean
-	public BasicDataSource getDbcpDataSource(){
-		BasicDataSource dbcpDataSource = new BasicDataSource();
-		dbcpDataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dbcpDataSource.setUrl("jdbc:hsqldb:mem:database");
-		dbcpDataSource.setUsername("sa");
-		dbcpDataSource.setPassword("");
-		return dbcpDataSource;
-	}
-
-	@Bean
 	public DataSource dataSource() {
 
 		// no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
@@ -53,10 +40,5 @@ public class SpringRootConfig {
 				.addScript("db/sql/create-db.sql")
 				.build();
 		return db;
-	}
-
-	@Bean
-	public MultipartResolver multipartResolver() {
-		return new StandardServletMultipartResolver();
 	}
 }

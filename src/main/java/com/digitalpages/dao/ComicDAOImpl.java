@@ -30,11 +30,13 @@ public class ComicDAOImpl implements ComicDAO {
     public Comic save(Comic comic){
     	buildDataSource();
 		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dbcpDataSource);
-    	String SQL = "INSERT INTO COMICS VALUES (DEFAULT, :title, :issue)";
+    	String SQL = "INSERT INTO COMICS VALUES (DEFAULT, :title, :issue, :thumb, :description)";
     	KeyHolder keyHolder = new GeneratedKeyHolder();
     	MapSqlParameterSource parameters = new MapSqlParameterSource();
     	parameters.addValue("title", comic.getTitle()); 
     	parameters.addValue("issue", comic.getIssue()); 
+    	parameters.addValue("thumb", comic.getThumb()); 
+    	parameters.addValue("description", comic.getDescription()); 
 
           try{
         	  namedParameterJdbcTemplate.update(SQL, parameters,keyHolder);
@@ -91,7 +93,10 @@ public class ComicDAOImpl implements ComicDAO {
 			Comic comic = new Comic();
 			comic.setTitle(rs.getString("title"));
 			comic.setId(rs.getInt("id"));
-			comic.setIssue(rs.getInt("issue"));
+			comic.setIssue(rs.getString("issue"));
+			comic.setDescription(rs.getString("description"));
+			comic.setThumb(rs.getString("thumb"));
+
 			return comic;
 		}
 	}

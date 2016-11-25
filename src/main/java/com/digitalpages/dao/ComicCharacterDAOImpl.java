@@ -30,12 +30,13 @@ public class ComicCharacterDAOImpl implements ComicCharacterDAO {
     public ComicCharacter save(ComicCharacter character){
     	buildDataSource();
 		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dbcpDataSource);
-    	String SQL = "INSERT INTO CHARACTERS VALUES (DEFAULT, :name, :description, :last_update)";
+    	String SQL = "INSERT INTO CHARACTERS VALUES (DEFAULT, :name, :description, :last_update, :thumb)";
     	KeyHolder keyHolder = new GeneratedKeyHolder();
     	MapSqlParameterSource parameters = new MapSqlParameterSource();
     	parameters.addValue("name", character.getName()); 
     	parameters.addValue("description", character.getDescription()); 
     	parameters.addValue("last_update", character.getLastUpdate());   
+    	parameters.addValue("thumb", character.getThumb());
 
 
           try{
@@ -95,6 +96,7 @@ public class ComicCharacterDAOImpl implements ComicCharacterDAO {
 			character.setDescription(rs.getString("description"));
 			character.setId(rs.getInt("id"));
 			character.setLastUpdate(rs.getDate("last_update"));
+			character.setThumb(rs.getString("thumb"));
 			return character;
 		}
 	}
