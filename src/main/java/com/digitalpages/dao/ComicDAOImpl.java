@@ -64,6 +64,25 @@ public class ComicDAOImpl implements ComicDAO {
 		return result;
 	}
 	
+
+	public List<Comic> findByCharacter(Integer id) {
+		buildDataSource();
+
+		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dbcpDataSource);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("id_character", id);
+		
+		String sql = "SELECT com.* FROM COMICS com "
+				+ "INNER JOIN COMICS_CHARACTERS cc ON com.id = cc.id_comic "
+				+ "WHERE cc.id_character = :id_character";
+		
+		List<Comic> result = namedParameterJdbcTemplate.query(sql, params, new ComicWrapper());
+
+		return result;
+	}
+	
 	@Override
 	public Comic findByID(int idComic) {
 		

@@ -94,14 +94,12 @@ public class Helper {
             	ComicsCharacters cc = new ComicsCharacters();
             	cc.setCharacter(character);
             	cc.setComic(comic);
-            	
+            	comicDAO.save(comic);
             	charactersComicsDAO.save(cc);
             }
-
-
         }
-        
 	}
+	
 	private ComicCharacter proccesCharacter(JsonElement element) throws ParseException {
 		ComicCharacter character = new ComicCharacter();
     	character.setDescription(element.getAsJsonObject().get("description").getAsString());

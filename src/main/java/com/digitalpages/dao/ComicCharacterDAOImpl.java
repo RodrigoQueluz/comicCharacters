@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.digitalpages.model.Comic;
 import com.digitalpages.model.ComicCharacter;
 
 @Repository	
@@ -97,7 +98,13 @@ public class ComicCharacterDAOImpl implements ComicCharacterDAO {
 			character.setId(rs.getInt("id"));
 			character.setLastUpdate(rs.getDate("last_update"));
 			character.setThumb(rs.getString("thumb"));
+			character.setComics(getComics(character));
 			return character;
+		}
+
+		private List<Comic> getComics(ComicCharacter character) {
+			ComicDAOImpl comicDAO = new ComicDAOImpl();
+			return comicDAO.findByCharacter(character.getId());
 		}
 	}
     
